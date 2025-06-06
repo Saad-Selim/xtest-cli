@@ -178,49 +178,50 @@ export class BrowserController extends EventEmitter {
       let result: any;
 
       switch (command.type) {
-        case 'navigate':
-          await this.page.goto(command.params.url, { waitUntil: 'domcontentloaded' });
-          result = { url: this.page.url() };
-          break;
+      case 'navigate':
+        await this.page.goto(command.params.url, { waitUntil: 'domcontentloaded' });
+        result = { url: this.page.url() };
+        break;
 
-        case 'click':
-          await this.page.click(command.params.selector);
-          result = { success: true };
-          break;
+      case 'click':
+        await this.page.click(command.params.selector);
+        result = { success: true };
+        break;
 
-        case 'type':
-          await this.page.fill(command.params.selector, command.params.text);
-          result = { success: true };
-          break;
+      case 'type':
+        await this.page.fill(command.params.selector, command.params.text);
+        result = { success: true };
+        break;
 
-        case 'screenshot':
-          const screenshot = await this.page.screenshot();
-          result = { data: screenshot.toString('base64') };
-          break;
+      case 'screenshot': {
+        const screenshot = await this.page.screenshot();
+        result = { data: screenshot.toString('base64') };
+        break;
+      }
 
-        case 'evaluate':
-          result = await this.page.evaluate(command.params.script);
-          break;
+      case 'evaluate':
+        result = await this.page.evaluate(command.params.script);
+        break;
 
-        case 'waitForSelector':
-          await this.page.waitForSelector(command.params.selector, {
-            timeout: command.params.timeout || 30000,
-          });
-          result = { success: true };
-          break;
+      case 'waitForSelector':
+        await this.page.waitForSelector(command.params.selector, {
+          timeout: command.params.timeout || 30000,
+        });
+        result = { success: true };
+        break;
 
-        case 'select':
-          await this.page.selectOption(command.params.selector, command.params.value);
-          result = { success: true };
-          break;
+      case 'select':
+        await this.page.selectOption(command.params.selector, command.params.value);
+        result = { success: true };
+        break;
 
-        case 'press':
-          await this.page.press(command.params.selector, command.params.key);
-          result = { success: true };
-          break;
+      case 'press':
+        await this.page.press(command.params.selector, command.params.key);
+        result = { success: true };
+        break;
 
-        default:
-          throw new Error(`Unknown command: ${command.type}`);
+      default:
+        throw new Error(`Unknown command: ${command.type}`);
       }
 
       // Send response
