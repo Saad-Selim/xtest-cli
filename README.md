@@ -16,7 +16,7 @@ The xtest CLI allows you to control browser automation sessions from your local 
 ## Installation
 
 ```bash
-npm install -g @xtest-cli/cli
+npm install -g @xtest-cli/cli@latest
 ```
 
 ## Quick Start
