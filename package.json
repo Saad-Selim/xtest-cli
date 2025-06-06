@@ -1,0 +1,76 @@
+{
+  "name": "@xtest-cli/cli",
+  "version": "0.1.0",
+  "description": "Official CLI for xtest.ing - Control browser automation sessions from your local machine",
+  "main": "dist/index.js",
+  "bin": {
+    "xtest": "./bin/xtest.js"
+  },
+  "files": [
+    "dist/**/*",
+    "bin/**/*",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "xtest",
+    "browser",
+    "automation",
+    "cli",
+    "testing",
+    "playwright",
+    "remote-control",
+    "devtools",
+    "inspector"
+  ],
+  "author": "xtest.ing team",
+  "license": "MIT",
+  "homepage": "https://github.com/Saad-Selim/xtest-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saad-Selim/xtest-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Saad-Selim/xtest-cli/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0",
+    "ws": "^8.16.0",
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "inquirer": "^8.2.6",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2",
+    "cli-table3": "^0.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/ws": "^8.5.10",
+    "@types/inquirer": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.10",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.2",
+    "ts-node": "^10.9.1"
+  }
+} 
