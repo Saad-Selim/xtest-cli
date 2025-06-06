@@ -1,90 +1,85 @@
 # Changelog
 
-All notable changes to @xtest-cli/cli will be documented in this file.
+All notable changes to the @xtest-cli/cli package will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.2.0] - 2025-01-06
 
-### Added
-- Initial release of @xtest/cli
-- Authentication commands (`auth login`, `auth logout`, `auth status`)
-- Browser control commands (`browser start`, `browser stop`)
-- Session management commands (`sessions list`, `sessions connect`)
-- Support for Chromium, Firefox, and WebKit browsers
-- Inspector mode with DevTools integration
-- WebSocket connection for real-time browser control
-- Auto-reconnect capability for resilient connections
-- Configuration management in `~/.xtest/config.json`
-- TypeScript support with full type definitions
+### 🔄 Breaking Changes
+- Changed authentication from API keys to email/password login
+- All CLI commands now require an active subscription
+- Removed `xtest auth login` in favor of simpler `xtest auth` command
 
-### Security
-- Secure API key storage in user home directory
-- Encrypted WebSocket communication with xtest.ing platform
+### ✨ New Features
+- Email/password authentication with JWT tokens
+- Subscription status checking on login
+- Improved authentication flow with better error messages
+- Token expiration handling (30-day expiry)
 
-## [0.1.4] - 2025-01-10
+### 🛠️ Improvements
+- Better error messages for subscription requirements
+- Clearer onboarding process for new users
+- Enhanced security with JWT token authentication
+- Simplified command structure
 
-### Fixed
-- Fixed WebSocket connection stability by adding ping/pong heartbeat mechanism
-- Updated CLI version header to correctly report version
-- Improved connection reliability with production servers
+### 📝 Documentation
+- Updated README with new authentication flow
+- Added subscription management instructions
+- Improved troubleshooting section
+- Added security information
 
-### Added
-- Automatic ping/pong to keep WebSocket connections alive
-- Better connection state management
+## [0.1.4] - 2025-01-05
 
-## [0.1.3] - 2025-01-10
+### 🐛 Bug Fixes
+- Fixed WebSocket connection stability issues
+- Improved error handling for network failures
+- Fixed session cleanup on unexpected disconnection
 
-### Added
-- Interactive mode for browser command with `--interactive` flag
-- Welcome banner and improved visual feedback throughout the CLI
-- Better error messages with helpful tips
-- Session configuration preview before starting
-- Enhanced authentication flow with existing credential check
-- Spinner animations for better progress indication
-- Browser and mode icons for better visual distinction
-- Custom help formatting with examples
+### 🛠️ Improvements
+- Better logging for debugging connection issues
+- Improved CLI response times
+- Enhanced browser session management
 
-### Changed
-- Improved UX/UI for all commands with better colors and formatting
-- Enhanced `xtest auth` command with step-by-step instructions
-- Better `xtest auth status` display with connection checking
-- More informative `xtest browser list` command with examples
-- Default browser mode changed from 'inspector' to 'headed'
-- API key masking for security (shows only first 4 and last 4 characters)
+## [0.1.3] - 2025-01-04
 
-### Fixed
-- Better error handling with specific messages for different failure scenarios
-- Improved validation for server URLs and API keys
+### ✨ Features
+- Added support for Firefox and WebKit browsers
+- Implemented session persistence across CLI restarts
+- Added `--url` flag for direct navigation on browser start
 
-## [0.1.2] - 2025-01-10
+### 🐛 Bug Fixes
+- Fixed issue with headed mode not showing browser window
+- Resolved memory leak in long-running sessions
 
-### Changed
-- Updated installation instructions to use `@latest` tag for clarity
-- Improved README documentation
+## [0.1.2] - 2025-01-03
 
-### Fixed
-- Minor documentation improvements
+### ✨ Features
+- Added `xtest sessions list` command
+- Implemented browser type selection (Chromium, Firefox, WebKit)
+- Added connection status indicator
 
-## [0.1.1] - 2025-01-10
+### 🛠️ Improvements
+- Better error messages for common issues
+- Improved WebSocket reconnection logic
+- Enhanced CLI help documentation
 
-### Fixed
-- Fixed WebSocket connection stability issue where CLI would disconnect immediately after receiving "connected" message
-- Improved error handling for unknown commands from server
-- Enhanced connection acknowledgment flow
+## [0.1.1] - 2025-01-02
 
-## [0.1.0] - 2025-01-10
+### 🐛 Bug Fixes
+- Fixed authentication token storage issue
+- Resolved Windows compatibility problems
+- Fixed issue with special characters in passwords
 
-### Added
-- Initial release of @xtest-cli/cli
-- Browser control commands (start, stop)
-- Authentication system
-- WebSocket connection to xtest.ing server
-- Support for Chromium, Firefox, and WebKit browsers
-- Inspector mode with DevTools
+## [0.1.0] - 2025-01-01
+
+### 🎉 Initial Release
+- Basic authentication with API keys
+- Browser control (headed/headless modes)
+- WebSocket connection to xtest.ing platform
 - Session management
-- Configuration storage in ~/.xtest/config.json
+- Cross-platform support (Windows, macOS, Linux)
 
 ---
 

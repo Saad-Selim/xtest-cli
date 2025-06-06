@@ -1,134 +1,209 @@
 # @xtest-cli/cli
 
-The official open-source CLI for [xtest.ing](https://xtest.ing) - a powerful browser automation platform.
+The official CLI for [xtest.ing](https://xtest.ing) - AI-Powered Browser Automation & Test Generation Platform.
 
-> **Note**: This CLI is open-source and free to use. The xtest.ing platform itself is a proprietary service. You'll need an xtest.ing account and API key to use this CLI.
+[![npm version](https://img.shields.io/npm/v/@xtest-cli/cli.svg)](https://www.npmjs.com/package/@xtest-cli/cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## About
+## 🚀 Features
 
-The xtest CLI allows you to control browser automation sessions from your local machine, providing features like:
+- 🌐 **Remote Browser Control**: Control browser sessions running on xtest.ing infrastructure
+- 🔍 **Live Browser View**: See what's happening in real-time with headed mode
+- 🤖 **AI-Powered Testing**: Generate intelligent test cases using AI
+- 🔄 **Session Management**: Create, list, and manage multiple browser sessions
+- 🔐 **Secure Authentication**: Email/password authentication with JWT tokens
+- 💳 **Subscription-Based**: Requires active xtest.ing subscription
 
-- 🖥️ **Local Browser Control**: Run browsers on your machine while they're controlled by xtest.ing
-- 🔍 **Inspector Mode**: Open browsers with DevTools for debugging
-- 🌐 **Multi-Browser Support**: Works with Chromium, Firefox, and WebKit
-- 🔄 **Live Connection**: Real-time bidirectional communication with xtest.ing
+## 📋 Prerequisites
 
-## Installation
+- Node.js 16.0.0 or higher
+- Active xtest.ing subscription
+- xtest.ing account credentials
+
+## 📦 Installation
 
 ```bash
 npm install -g @xtest-cli/cli@latest
 ```
 
-## Quick Start
+## 🔐 Authentication
 
-1. **Authenticate with your xtest.ing account:**
+The CLI uses email/password authentication. You'll need:
+1. An active xtest.ing account
+2. A valid subscription
+3. Your account credentials
+
+### Login
+
+```bash
+xtest auth
+```
+
+You'll be prompted for:
+- **Email**: Your xtest.ing account email
+- **Password**: Your account password
+- **Server URL**: Default is https://xtest.ing
+
+Example:
+```
+🔐 Login to xtest.ing
+
+  Note: You need an active subscription to use the CLI
+  Sign up at: https://xtest.ing/pricing
+
+  📧 Email: user@example.com
+  🔑 Password: ••••••••
+
+✓ Login successful!
+✨ Welcome back, John!
+   Subscription: Active
+```
+
+### Check Authentication Status
+
+```bash
+xtest auth status
+```
+
+### Logout
+
+```bash
+xtest auth logout
+```
+
+## 🎯 Quick Start
+
+1. **Install the CLI**
    ```bash
-   xtest auth login
+   npm install -g @xtest-cli/cli@latest
    ```
 
-2. **Start a browser session:**
+2. **Login to your account**
    ```bash
-   xtest browser start --inspector
+   xtest auth
    ```
 
-3. **List active sessions:**
+3. **Start a browser session**
    ```bash
-   xtest sessions list
+   xtest browser --mode headed
    ```
 
-## Commands
+4. **Navigate to a website**
+   ```bash
+   xtest browser --url https://example.com
+   ```
 
-### Authentication
-- `xtest auth login` - Login to your xtest.ing account
-- `xtest auth logout` - Logout and clear credentials
-- `xtest auth status` - Check authentication status
+## 📚 Commands
 
-### Browser Control
-- `xtest browser start [options]` - Start a new browser session
-  - `--type <browser>` - Browser type: chromium (default), firefox, webkit
-  - `--inspector` - Enable DevTools inspector
-  - `--session <id>` - Connect to specific session ID
+### Authentication Commands
 
-- `xtest browser stop` - Stop the current browser session
+| Command | Description |
+|---------|-------------|
+| `xtest auth` | Login with your xtest.ing credentials |
+| `xtest auth status` | Check authentication and subscription status |
+| `xtest auth logout` | Logout and clear stored credentials |
+
+### Browser Commands
+
+| Command | Description |
+|---------|-------------|
+| `xtest browser` | Start a browser session (headless by default) |
+| `xtest browser --mode headed` | Start browser in headed mode (visible) |
+| `xtest browser --mode headless` | Start browser in headless mode |
+| `xtest browser --url <url>` | Navigate to specific URL on start |
+| `xtest browser --type <type>` | Browser type: chromium, firefox, webkit |
+
+### Session Commands
+
+| Command | Description |
+|---------|-------------|
+| `xtest sessions list` | List all active browser sessions |
+| `xtest sessions` | Alias for sessions list |
+
+## 💡 Usage Examples
+
+### Basic Browser Automation
+```bash
+# Start a visible browser session
+xtest browser --mode headed
+
+# Navigate to a specific URL
+xtest browser --url https://github.com --mode headed
+
+# Use Firefox instead of Chromium
+xtest browser --type firefox --mode headed
+```
 
 ### Session Management
-- `xtest sessions list` - List all active sessions
-- `xtest sessions connect <id>` - Connect to an existing session
+```bash
+# List all your active sessions
+xtest sessions list
 
-## How It Works
-
-The CLI creates a secure WebSocket connection between your local machine and the xtest.ing platform:
-
-```
-xtest.ing Server → WebSocket → CLI → Local Browser
+# Check your authentication status
+xtest auth status
 ```
 
-This architecture allows you to:
-- See browser actions in real-time during development
-- Debug automation scripts with full DevTools access
-- Run browsers locally while leveraging xtest.ing's automation capabilities
+## 🔒 Security
 
-## Configuration
+- **Token-Based**: Uses JWT tokens that expire after 30 days
+- **Secure Storage**: Credentials are stored securely in your home directory
+- **Subscription Required**: All commands require an active subscription
+- **HTTPS Only**: All communication is encrypted
+
+## 💳 Subscription Management
+
+The CLI requires an active xtest.ing subscription. To manage your subscription:
+
+1. Visit [xtest.ing](https://xtest.ing)
+2. Login to your account
+3. Click on your profile → "Manage Subscription"
+4. You'll be redirected to the Stripe customer portal
+
+## 🛠️ Configuration
 
 Configuration is stored in `~/.xtest/config.json`:
 
 ```json
 {
-  "apiKey": "your-api-key",
-  "apiUrl": "https://xtest.ing",
-  "wsUrl": "wss://xtest.ing"
+  "apiKey": "your-jwt-token",
+  "serverUrl": "https://xtest.ing"
 }
 ```
 
-## Contributing
+## 🐛 Troubleshooting
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+### "Subscription required" error
+- Ensure you have an active subscription at https://xtest.ing/pricing
+- Try logging out and logging in again: `xtest auth logout` then `xtest auth`
 
-### Development Setup
+### "Invalid credentials" error
+- Double-check your email and password
+- Ensure your account is active
+- Try resetting your password on the website
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/xtest/cli.git
-   cd cli
-   ```
+### Connection issues
+- Check your internet connection
+- Verify the server URL (default: https://xtest.ing)
+- Check if you're behind a firewall or proxy
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+## 📝 Changelog
 
-3. Build the project:
-   ```bash
-   npm run build
-   ```
+See [CHANGELOG.md](https://github.com/Saad-Selim/xtest-cli/blob/main/CHANGELOG.md) for version history.
 
-4. Link for local development:
-   ```bash
-   npm link
-   ```
+## 🤝 Contributing
 
-### Running Tests
+We welcome contributions! Please see our [Contributing Guide](https://github.com/Saad-Selim/xtest-cli/blob/main/CONTRIBUTING.md) for details.
 
-```bash
-npm test
-```
+## 📄 License
 
-## Security
+MIT - see [LICENSE](https://github.com/Saad-Selim/xtest-cli/blob/main/LICENSE) for details.
 
-- API keys are stored locally in your home directory
-- All communication with xtest.ing is encrypted
-- Browser sessions are isolated and secure
-
-## License
-
-MIT - see [LICENSE](LICENSE) for details.
-
-## Support
+## 🆘 Support
 
 - 📧 Email: support@xtest.ing
-- 💬 Discord: [Join our community](https://discord.gg/xtest)
-- 📚 Docs: [https://docs.xtest.ing](https://docs.xtest.ing)
+- 🌐 Website: [xtest.ing](https://xtest.ing)
+- 🐛 Issues: [GitHub Issues](https://github.com/Saad-Selim/xtest-cli/issues)
 
 ---
 
-Made with ❤️ by the xtest.ing team 
+Made with ❤️ by the [xtest.ing](https://xtest.ing) team 
