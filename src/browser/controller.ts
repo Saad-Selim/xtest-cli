@@ -30,6 +30,7 @@ export class BrowserController extends EventEmitter {
   private ws?: WebSocket;
   private reconnectAttempts = 0;
   private maxReconnectAttempts = 5;
+  private pingInterval?: NodeJS.Timeout;
 
   constructor(options: BrowserControllerOptions) {
     super();
@@ -131,13 +132,16 @@ export class BrowserController extends EventEmitter {
       headers: {
         'Authorization': `Bearer ${this.options.apiKey}`,
         'X-Session-ID': this.options.sessionId,
-        'X-CLI-Version': '0.1.0',
+        'X-CLI-Version': '0.1.3',
       },
     });
 
     this.ws.on('open', () => {
       console.log(chalk.green('✅ Connected to xtest.ing'));
       this.reconnectAttempts = 0;
+      
+      // Start ping interval to keep connection alive
+      this.startPingInterval();
       
       // Send initial status
       this.sendMessage({
@@ -176,7 +180,13 @@ export class BrowserController extends EventEmitter {
 
     this.ws.on('close', () => {
       console.log(chalk.yellow('Disconnected from server'));
+      this.stopPingInterval();
       this.handleReconnect();
+    });
+    
+    // Handle pong responses
+    this.ws.on('pong', () => {
+      // Server is alive
     });
   }
 
@@ -277,7 +287,26 @@ export class BrowserController extends EventEmitter {
     }, delay);
   }
 
+  private startPingInterval(): void {
+    // Send ping every 30 seconds to keep connection alive
+    this.pingInterval = setInterval(() => {
+      if (this.ws?.readyState === WebSocket.OPEN) {
+        this.ws.ping();
+      }
+    }, 30000);
+  }
+
+  private stopPingInterval(): void {
+    if (this.pingInterval) {
+      clearInterval(this.pingInterval);
+      this.pingInterval = undefined;
+    }
+  }
+
   async stop(): Promise<void> {
+    // Stop ping interval
+    this.stopPingInterval();
+    
     // Close WebSocket
     if (this.ws) {
       this.ws.close();

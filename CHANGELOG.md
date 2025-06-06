@@ -23,6 +23,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Secure API key storage in user home directory
 - Encrypted WebSocket communication with xtest.ing platform
 
+## [0.1.4] - 2025-01-10
+
+### Fixed
+- Fixed WebSocket connection stability by adding ping/pong heartbeat mechanism
+- Updated CLI version header to correctly report version
+- Improved connection reliability with production servers
+
+### Added
+- Automatic ping/pong to keep WebSocket connections alive
+- Better connection state management
+
 ## [0.1.3] - 2025-01-10
 
 ### Added
