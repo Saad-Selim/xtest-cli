@@ -1,6 +1,6 @@
 {
   "name": "@xtest-cli/cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Official CLI for xtest.ing - AI-Powered Browser Automation & Test Generation Platform",
   "main": "dist/index.js",
   "bin": {
@@ -78,4 +78,4 @@
     "typescript": "^5.3.2",
     "ts-node": "^10.9.1"
   }
-} 
+}
