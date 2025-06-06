@@ -1,11 +1,12 @@
 {
   "name": "@xtest-cli/cli",
   "version": "0.2.0",
-  "description": "Official CLI for xtest.ing - Control browser automation sessions from your local machine",
+  "description": "Official CLI for xtest.ing - AI-Powered Browser Automation & Test Generation Platform",
   "main": "dist/index.js",
   "bin": {
     "xtest": "./bin/xtest.js"
   },
+  "preferGlobal": true,
   "files": [
     "dist/**/*",
     "bin/**/*",
@@ -34,7 +35,9 @@
     "playwright",
     "remote-control",
     "devtools",
-    "inspector"
+    "inspector",
+    "ai-testing",
+    "test-generation"
   ],
   "author": "xtest.ing team",
   "license": "MIT",

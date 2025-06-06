@@ -5,6 +5,12 @@ The official CLI for [xtest.ing](https://xtest.ing) - AI-Powered Browser Automat
 [![npm version](https://img.shields.io/npm/v/@xtest-cli/cli.svg)](https://www.npmjs.com/package/@xtest-cli/cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Installation
+
+```bash
+npm install -g @xtest-cli/cli@latest
+```
+
 ## 🚀 Features
 
 - 🌐 **Remote Browser Control**: Control browser sessions running on xtest.ing infrastructure
