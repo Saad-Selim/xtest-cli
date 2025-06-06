@@ -10,6 +10,7 @@
   "files": [
     "dist/**/*",
     "bin/**/*",
+    "scripts/**/*",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
@@ -24,7 +25,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "postinstall": "node scripts/check-global.js || true"
   },
   "keywords": [
     "xtest",
