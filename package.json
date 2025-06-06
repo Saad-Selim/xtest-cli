@@ -1,6 +1,6 @@
 {
   "name": "@xtest-cli/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Official CLI for xtest.ing - Control browser automation sessions from your local machine",
   "main": "dist/index.js",
   "bin": {

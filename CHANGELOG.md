@@ -23,7 +23,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Secure API key storage in user home directory
 - Encrypted WebSocket communication with xtest.ing platform
 
-## [0.1.0] - 2024-06-05
+## [0.1.1] - 2025-06-06
+
+### Fixed
+- Fixed WebSocket message handling to properly handle "connected" acknowledgment from server
+- Resolved "Unknown command: connected" error when establishing connection
+
+## [0.1.0] - 2025-06-05
 
 ### Added
 - Initial beta release for internal testing

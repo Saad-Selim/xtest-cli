@@ -152,10 +152,21 @@ export class BrowserController extends EventEmitter {
 
     this.ws.on('message', async (data) => {
       try {
-        const command: Command = JSON.parse(data.toString());
-        await this.handleCommand(command);
+        const message = JSON.parse(data.toString());
+        
+        // Handle different message types
+        if (message.type === 'connected') {
+          // Server acknowledgment - just log it
+          console.log(chalk.gray('Server acknowledged connection'));
+          return;
+        }
+        
+        // Handle commands
+        if (message.id && message.type) {
+          await this.handleCommand(message);
+        }
       } catch (error) {
-        console.error(chalk.red('Failed to handle command:'), error);
+        console.error(chalk.red('Failed to handle message:'), error);
       }
     });
 
