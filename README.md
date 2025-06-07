@@ -20,6 +20,7 @@ npm install -g @xtest-cli/cli@latest
 - 🔐 **Secure Authentication**: Email/password authentication with JWT tokens
 - 💳 **Subscription-Based**: Requires active xtest.ing subscription
 - 🎮 **Interactive Mode**: NEW! Control dual browsers with persistent state
+- 🔄 **Mirror Mode**: NEW! Synchronized browser control - actions mirror between browsers
 
 ## 📋 Prerequisites
 
@@ -146,6 +147,36 @@ Once in interactive mode, you can use these commands:
 - `cloud type <selector> <text>` - Type text in cloud browser
 - `status` - Show current state of both browsers
 - `exit` - Close both browsers and exit
+
+### Mirror Mode (NEW in v0.6.0+)
+
+| Command | Description |
+|---------|-------------|
+| `xtest mirror` | Start synchronized browser control |
+| `xtest mirror --url <url>` | Start with specific URL |
+
+Mirror mode launches two browsers:
+- **Local Browser**: Opens on your laptop (visible)
+- **Cloud Browser**: Runs on xtest.ing servers
+
+All actions in the local browser are automatically mirrored to the cloud browser in real-time!
+
+### Synchronized Browser Control (Mirror Mode)
+
+```bash
+# Start mirror mode with default URL (Google)
+xtest mirror
+
+# Start with a specific URL
+xtest mirror --url https://github.com
+
+# What happens:
+# 1. Local browser opens on your laptop
+# 2. Cloud browser starts on xtest.ing
+# 3. Navigate, click, or type in local browser
+# 4. Actions automatically mirror to cloud browser
+# 5. Both browsers stay in sync!
+```
 
 ## 💡 Usage Examples
 
