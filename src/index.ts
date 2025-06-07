@@ -1,8 +1,12 @@
+#!/usr/bin/env node
 import { Command } from 'commander';
 import chalk from 'chalk';
 import { browserCommand } from './commands/browser';
 import { authCommand } from './commands/auth';
 import { sessionsCommand } from './commands/sessions';
+import { dualCommand } from './commands/dual';
+import { dual2Command } from './commands/dual-v2';
+import { dualInteractiveCommand } from './commands/dual-interactive';
 import { version } from '../package.json';
 import { getConfig } from './utils/config';
 
@@ -32,6 +36,9 @@ program
 program.addCommand(authCommand);
 program.addCommand(browserCommand);
 program.addCommand(sessionsCommand);
+program.addCommand(dualCommand);
+program.addCommand(dual2Command);
+program.addCommand(dualInteractiveCommand);
 
 // Add global error handler
 program.exitOverride();

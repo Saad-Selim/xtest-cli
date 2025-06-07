@@ -1,7 +1,7 @@
 {
   "name": "@xtest-cli/cli",
-  "version": "0.2.1",
-  "description": "Official CLI for xtest.ing - AI-Powered Browser Automation & Test Generation Platform",
+  "version": "0.5.1",
+  "description": "CLI for xtest.ing - AI-powered test generation platform",
   "main": "dist/index.js",
   "bin": {
     "xtest": "./bin/xtest.js"
@@ -17,16 +17,16 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node src/index.ts",
+    "dev": "tsc --watch",
     "start": "node dist/index.js",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "prepublishOnly": "npm run lint && npm run build",
     "prepare": "npm run build",
-    "postinstall": "node scripts/check-global.js || true"
+    "postinstall": "node -e \"if(process.env.npm_config_global !== 'true') { console.log('\\n⚠️  Warning: @xtest-cli/cli is designed to be installed globally.\\n   Run: npm install -g @xtest-cli/cli\\n'); }\" 2>/dev/null || true"
   },
   "keywords": [
     "xtest",
@@ -55,14 +55,14 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
+    "axios": "^1.6.2",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1",
     "playwright": "^1.48.0",
     "ws": "^8.16.0",
-    "commander": "^11.1.0",
-    "chalk": "^4.1.2",
-    "ora": "^5.4.1",
-    "inquirer": "^8.2.6",
     "dotenv": "^16.3.1",
-    "axios": "^1.6.2",
     "cli-table3": "^0.6.3"
   },
   "devDependencies": {

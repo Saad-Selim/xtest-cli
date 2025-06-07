@@ -5,7 +5,42 @@ All notable changes to the @xtest-cli/cli package will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] - 2025-01-06
+## [0.3.1] - 2025-01-06
+
+### Changed
+- CLI now opens a local browser AND mirrors actions to a server browser
+- Dashboard shows the server browser that mirrors your local actions
+- Best of both worlds: local control with dashboard visibility
+
+### How it works
+1. CLI opens a browser on your laptop
+2. CLI creates a mirror browser on the server
+3. Every action in your local browser is mirrored to the server browser
+4. Dashboard shows the server browser in real-time
+
+### Fixed
+- Reverted breaking change from 0.3.0
+- Local browser control is restored
+- Dashboard visibility is maintained through mirroring
+
+## [0.3.0] - 2025-01-06
+
+### Changed
+- **BREAKING**: CLI now creates server-side browser sessions instead of local browsers
+- Browser sessions are now visible and controllable from the dashboard
+- All browser actions happen on the server, not locally
+- Added browser streaming support for dashboard viewing
+
+### Fixed
+- CLI sessions now appear in the dashboard
+- Browser actions are properly synchronized with the server
+
+### Technical
+- Replaced local Playwright browser with server API calls
+- Uses `/api/enhanced-browser/inspector/create` for session creation
+- Implements proper WebSocket communication for real-time updates
+
+## [0.2.1] - 2025-01-06
 
 ### 🔄 Breaking Changes
 - Changed authentication from API keys to email/password login
