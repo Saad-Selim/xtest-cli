@@ -7,6 +7,7 @@ import { sessionsCommand } from './commands/sessions';
 import { dualCommand } from './commands/dual';
 import { dual2Command } from './commands/dual-v2';
 import { dualInteractiveCommand } from './commands/dual-interactive';
+import { mirrorCommand } from './commands/mirror';
 import { version } from '../package.json';
 import { getConfig } from './utils/config';
 
@@ -39,6 +40,7 @@ program.addCommand(sessionsCommand);
 program.addCommand(dualCommand);
 program.addCommand(dual2Command);
 program.addCommand(dualInteractiveCommand);
+program.addCommand(mirrorCommand);
 
 // Add global error handler
 program.exitOverride();
