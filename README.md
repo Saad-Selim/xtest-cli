@@ -19,6 +19,7 @@ npm install -g @xtest-cli/cli@latest
 - 🔄 **Session Management**: Create, list, and manage multiple browser sessions
 - 🔐 **Secure Authentication**: Email/password authentication with JWT tokens
 - 💳 **Subscription-Based**: Requires active xtest.ing subscription
+- 🎮 **Interactive Mode**: NEW! Control dual browsers with persistent state
 
 ## 📋 Prerequisites
 
@@ -126,6 +127,26 @@ xtest auth logout
 | `xtest sessions list` | List all active browser sessions |
 | `xtest sessions` | Alias for sessions list |
 
+### Interactive Mode (NEW in v0.5.0+)
+
+| Command | Description |
+|---------|-------------|
+| `xtest interactive` | Start interactive dual browser control |
+| `xtest i` | Alias for interactive mode |
+
+#### Interactive Mode Commands
+
+Once in interactive mode, you can use these commands:
+
+- `local <url>` - Navigate local browser to URL
+- `cloud <url>` - Navigate cloud browser to URL
+- `local click <selector>` - Click element in local browser
+- `cloud click <selector>` - Click element in cloud browser
+- `local type <selector> <text>` - Type text in local browser
+- `cloud type <selector> <text>` - Type text in cloud browser
+- `status` - Show current state of both browsers
+- `exit` - Close both browsers and exit
+
 ## 💡 Usage Examples
 
 ### Basic Browser Automation
@@ -138,6 +159,18 @@ xtest browser --url https://github.com --mode headed
 
 # Use Firefox instead of Chromium
 xtest browser --type firefox --mode headed
+```
+
+### Interactive Dual Browser Control
+```bash
+# Start interactive mode
+xtest interactive
+
+# In the interactive prompt:
+xtest> local https://google.com
+xtest> cloud https://github.com
+xtest> status
+xtest> exit
 ```
 
 ### Session Management
